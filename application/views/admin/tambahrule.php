@@ -44,67 +44,54 @@
 
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Data Gejala</h1>
+            <h1 class="h3 mb-0 text-gray-800">Data Rule Base</h1>
             
           </div>
 
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Form Data Gejala</h6>
+              <h6 class="m-0 font-weight-bold text-primary">Form Data Rule Base</h6>
               
             </div>
             <div class="card-body">
-              <form class="form-horizontal form-bordered" method="get">
-                                        <div class="panel-body">
-                                            <div class="form-group">
-                                                <label class="col-md-3 control-label" for="inputSuccess">Nama Penyakit</label>
-                                                <div class="col-md-6">
-                                                    <select class="form-control mb-md">
-                                                        <option>Penyakit Typhoid</option>
-                                                        <option>Demam Berdarah Dengue</option>
-                                                        <option>Gastroentritis</option>
-                                                        <option>Dispepsi</option>
-                                                        <option>Demam</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                        
-                                            <div class="form-group" >
-                                                <label class="col-md-3 control-label">Gejala</label>
-                                                <div class="col-sm-8" id="input_fields_wrap">
-                                                    <div class="row" >
-                                                        <div class="col-sm-6">
-                                                            <select class="form-control mb-md">
-                                                              <option>Apakah Demam Tinggi?</option>
-                                                              <option>Apakah Merasakan Sakit Kepala?</option>
-                                                              <option>Apakah Merasakan Nyeri Perut?</option>
-                                                              <option>Apakah Terjadi Diare beberapa Terakhir?</option>
-                                                              <option>Apakah Merasakan Mual?</option>
-                                                              <option>Merasakan Muntah Muntah?</option>
-                                                              <option>Apakah Nafsu Makan Menurun?</option>
-                                                              <option>Apakah Merasakan Lemah, Letih, Lesu?</option>
-                                                              <option>Terjadi Ruam Ruam Pada Bagian Tubuh?</option>
-                                                              <option>Merasakan nyeri Otot dan Persendian?</option>
-                                                              <option>Apakah merasakan Nyeri Pada Bagian Belakang Mata?</option>
-                                                            </select>
-                                                        </div>
-                                                        <div class="visible-xs mb-md"></div>
-                                                        <div class="col-sm-2">
-                                                            <button class="btn btn-primary" id="add_field_button">add</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <footer class="panel-footer">
-                                            <div class="center">
-                                                <div class="col-sm-9 col-sm-offset-4">
-                                                    <button class="btn btn-primary">Submit</button>
-                                                    <button type="reset" class="btn btn-danger">Reset</button>
-                                                </div>
-                                            </div>
-                                        </footer>
-                                    </form> 
+              <form action="<?php echo base_url(). 'admin/tambah_aksi3/'; ?>" method="post">
+                  <div class="panel-body">
+                  <div class="col-sm-6 mb-3 mb-sm-0">
+                    <b>Nama Penyakit</b><br>
+                    <select name="id_penyakit" class="form-control" id="kode_penyakit">
+                      <?php foreach($data_penyakit as $p){?>
+                        <option value="<?= $p->id_penyakit ?>"><?= $p->nama_penyakit ?></option>
+                      <?php } ?>
+                    </select>
+                  </div>
+                    <div class="form-group" >
+                      <label class="col-md-3 control-label">Gejala</label>
+                        <div class="col-sm-8" id="input_fields_wrap">
+                          <div class="row" >
+                            <div class="col-sm-6">
+                              <select name="id_gejala" class="form-control" id="kode_gejala">
+                                <?php foreach($data_gejala as $g){?>
+                                  <option value="<?= $g->id_gejala ?>"><?= $g->nama_gejala ?></option>
+                                <?php } ?>
+                              </select>
+                            </div>
+                          <div class="visible-xs mb-md"></div>
+                             <div class="col-sm-2">
+                                <button class="btn btn-primary" id="add_field_button">add</button>
+                              </div>
+                            </div>
+                          </div>
+                      </div>
+                    </div>
+                      <footer class="panel-footer">
+                        <div class="center">
+                          <div class="col-sm-9 col-sm-offset-4">
+                            <button class="btn btn-primary">Submit</button>
+                            <button type="reset" class="btn btn-danger">Reset</button>
+                          </div>
+                        </div>
+                      </footer>
+              </form> 
             </div>
           </div>
             
@@ -192,7 +179,7 @@
                 e.preventDefault();
                 if(x < max_fields){ //max input box allowed
                     x++; //text box increment
-                    $(wrapper).append('<div class="row" style="margin-top:10px"><div class="col-sm-6">'+
+                    $(wrapper).append('<div class="row"> <div class="col-sm-6">'+
                                            '<input type="text" class="form-control" placeholder="Gejala">'+
                                        '</div>'+
                                        

@@ -94,22 +94,30 @@ class Admin extends CI_Controller {
 	}
 
 	public function tambahgejala(){
-		$this->load->view('admin/tambahgejala');
+		$data['data_gejala'] = $this->m_data->tampil_data()->result();
+		$this->load->view('admin/tambahgejala', $data);
 	}
 
 	public function tambah_aksi(){
 		$id_gejala = $this->input->post('kode_g');
 		$nama_gejala = $this->input->post('nama_g');
+		$id_induk_ya = $this->input->post('id_induk_ya');
+		$id_induk_tidak = $this->input->post('id_induk_tidak');
  
 		$data = array(
 			'id_gejala' => $id_gejala,
 			'nama_gejala' => $nama_gejala,
+			'id_induk_ya' => $id_induk_ya,
+			'id_induk_tidak'=> $id_induk_tidak
+			
 			);
+			
 		$this->m_data->input_data($data,'gejala');
 		redirect('admin/datagejala');
 	}
 
 	function editgejala($id_gejala){
+		$data['data_gejala'] = $this->m_data->tampil_data()->result();
 		$where = array('id_gejala' => $id_gejala);
 		$data['gejala'] = $this->m_data->edit_data($where,'gejala')->result();
 		$this->load->view('admin/editgejala',$data);
@@ -122,31 +130,52 @@ class Admin extends CI_Controller {
 	}
 
 	function update(){
-	$id_gejala = $this->input->post('kode_g');
-	$nama_gejala = $this->input->post('nama_g');
-	
-	$data = array(
-		'id_gejala' => $id_gejala,
-		'nama_gejala' => $nama_gejala,
-	);
+		$id_gejala = $this->input->post('kode_g');
+		$nama_gejala = $this->input->post('nama_g');
+		$id_induk_ya = $this->input->post('id_induk_ya');
+		$id_induk_tidak = $this->input->post('id_induk_tidak');
+		
+		$data = array(
+			'nama_gejala' => $nama_gejala,
+			'id_induk_ya' => $id_induk_ya,
+			'id_induk_tidak'=> $id_induk_tidak
+		);
 
-	$where = array(
-		'id_gejala' => $id_gejala
-	);
+		$where = array(
+			'id_gejala' => $id_gejala
+		);
 
-	$this->m_data->update_data($where,$data,'gejala');
-	redirect('admin/datagejala');
-}
+		$tes = $this->m_data->update_data($where,$data,'gejala');
+
+		redirect('admin/datagejala');
+	}
 
 	//DATA RULE BASE
 	public function datarule()
 	{
-		$this->load->view('admin/datarule');
+		$data['rulebase'] = $this->m_data->tampil_data()->result();
+		$this->load->view('admin/datarule', $data);
 	}
 
 	public function tambahrule()
 	{
-		$this->load->view('admin/tambahrule');
+		$data['data_penyakit'] = $this->m_data->tampil_data1()->result();
+		$data['data_gejala'] = $this->m_data->tampil_data()->result();
+		$this->load->view('admin/tambahrule', $data);
+	}
+
+	public function tambah_aksi3(){
+		$id_penyakit = $this->input->post('kode_penyakit');
+		$id_gejala = $this->input->post('kode_gejala');
+ 
+		$data = array(
+			'kode_penyakit' => $id_penyakit,
+			'kode_gejala' => $id_gejala,
+			
+			);
+			
+		$this->m_data->input_data($data,'rulebase');
+		redirect('admin/datarule');
 	}
 
 	//DATA PASIEN

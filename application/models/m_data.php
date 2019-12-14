@@ -13,11 +13,19 @@ class M_data extends CI_Model{
 		return $this->db->get('pasien');//Menampilkan Data Pasien ke dalam Table Admin
 	}
 
+	function tampil_data3(){
+		return $this->db->get('rulebase');//Menampilkan Data Pasien ke dalam Table Admin
+	}
+
 	function input_data($data,$table){
 		$this->db->insert($table,$data);// Function untuk menginputkan data ke dalam database table gejala
 	}
 
 	function input_data1($data,$table){
+		$this->db->insert($table,$data);// Function untuk menginputkan data ke dalam database table penyakit
+	}
+
+	function input_data3($data,$table){
 		$this->db->insert($table,$data);// Function untuk menginputkan data ke dalam database table penyakit
 	}
 
@@ -33,7 +41,8 @@ class M_data extends CI_Model{
 
 	function update_data($where,$data,$table){
 		$this->db->where($where);
-		$this->db->update($table,$data);
+		return $this->db->update($table,$data);
+		
 	}
 
 	

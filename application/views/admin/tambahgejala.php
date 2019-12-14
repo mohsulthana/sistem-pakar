@@ -64,7 +64,12 @@
                   <div class="col-sm-6 mb-3 mb-sm-0">
                     <b>Gejala Ini Muncul:</b><br>
                     <b>Jawaban YA Pada:</b>
-                    <input type="text" class="form-control form-control" name="kode_induk_ya" placeholder="Nama Gejala">
+                    <select name="id_induk_ya" class="form-control" id="id_gejala">
+                    <option value="0">Tidak ada</option>
+                      <?php foreach($data_gejala as $gej){?>
+                        <option value="<?= $gej->id_gejala ?>"><?= $gej->nama_gejala ?></option>
+                      <?php } ?>
+                    </select>
                   </div>
                 </div>
                 <div class="form-group row">
@@ -75,7 +80,12 @@
                   <div class="col-sm-6 mb-3 mb-sm-0">
                     
                     <b>Jawaban Tidak Pada:</b>
-                    <input type="text" class="form-control form-control" name="kode_induk_tidak" placeholder="Nama Gejala">
+                    <select name="id_induk_tidak" class="form-control" id="id_gejala">
+                    <option value="0">Tidak ada</option>
+                      <?php foreach($data_gejala as $gej){?>
+                        <option value="<?= $gej->id_gejala ?>"><?= $gej->nama_gejala ?></option>
+                      <?php } ?>
+                    </select>
                   </div>
                 </div>
                 <div class="form-group row">
