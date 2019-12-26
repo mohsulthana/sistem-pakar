@@ -149,16 +149,61 @@
                   Nyeri Ulu Hati <input type="radio" name="awal" id="gejala_awal" value="ulu">
                 </div>
               </div>
-              <div id="lanjutan"></div>
+
+              <div class="tab" id="dua_demam_tinggi">Pertanyaan 2
+                <div class="container">
+                  <h4>Manakah yang paling mewakili</h4>
+                  Demam naik terutama pada malam hari<input type="radio" name="demam_naik_turun" id="gejala_demam_naik_turun" value="naik">
+                  Demam turun pada hari ke-3 <input type="radio" name="demam_naik_turun" id="gejala_demam_naik_turun" value="turun">
+                </div>
+              </div>
+
+              <div class="tab" id="tiga_demam_naik">Pertanyaan 3
+                <div class="container">
+                  <h4>Apakah anda merasa konstipasi/sembelit?</h4>
+                  Ya <input type="radio" name="sembelit" id="gejala_sembelit" value="ya">
+                  Tidak <input type="radio" name="sembelit" id="gejala_sembelit" value="tidak">
+                </div>
+              </div>
+
+              <div class="tab" id="tiga_demam_turun">Pertanyaan 3
+                <div class="container">
+                  <h4>Apakah anda merasa konstipasi/sembelit?</h4>
+                  Ya <input type="radio" name="sembelit" id="gejala_sembelit" value="tinggi">
+                  Tidak <input type="radio" name="sembelit" id="gejala_sembelit" value="rendah">
+                </div>
+              </div>
+
               <script>
               $('input[name=awal]').on('change', function() {
-                var diagnosa = $('input[name=awal]:checked').val();
+                var diagnosa    = $('input[name=awal]:checked').val();
+                var diagnosa2   = $('input[name=demam_naik_turun]:checked').val();
+                var diagnosa3   = $('input[name=sembelit]:checked').val();
+
+
+
                 if (diagnosa === 'tinggi') {
-                  var html = '<div class="tab">Pertanyaan 1 <div class="container"><h4>Apakah anda merasa demam?</h4> Demam tinggi <input type="radio" name="awal" id="gejala_awal" value="tinggi">Demam Ringan <input type="radio" name="awal" id="gejala_awal" value="rendah">Nyeri Ulu Hati <input type="radio" name="awal" id="gejala_awal" value="ulu"></div></div>'
-                  $('#lanjutan').html(html);
+                  $('#dua_demam_tinggi').toggle();
+                  if (diagnosa2 === 'naik') {
+                    console.log('naik');
+                    $('#tiga_demam_naik').toggle();
+                  
+                  
+                  
+                  
+                  
+                  } else if (diagnosa2 === 'turun') {
+                    $('#tiga_demam_turun').toggle();
+                  }
+                
+                
+                
+                
                 } else if (diagnosa == 'rendah') {
+                  $('#dua_demam_tinggi').toggle();
 
                 } else if (diagnosa == ulu) {
+                  $('#dua_demam_tinggi').toggle();
 
                 }
               })
