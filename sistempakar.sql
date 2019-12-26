@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.2
+-- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 14, 2019 at 03:05 PM
--- Server version: 10.1.34-MariaDB
--- PHP Version: 7.2.8
+-- Generation Time: Dec 26, 2019 at 11:25 AM
+-- Server version: 10.4.6-MariaDB
+-- PHP Version: 7.1.31
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -40,16 +40,26 @@ CREATE TABLE `gejala` (
 --
 
 INSERT INTO `gejala` (`id_gejala`, `nama_gejala`, `id_induk_ya`, `id_induk_tidak`) VALUES
-('G1', 'Apakah Merasakan Demam?', '', ''),
-('g12', 'dadwada', 'G3', 'G8'),
-('G2', 'Apakah Demam Naik Terutama pada Malam Hari?', '', ''),
-('G3', 'Apakah Merasakan Demam Turun pada Hari ke 3?', '', ''),
+('G1', 'Apakah Merasakan Demam Tinggi?', '', ''),
+('G10', 'Apakah anda merasakan konstipasi/sembelit?', 'G2', ''),
+('G11', 'Apakah anda merasakan muntah?', 'G9', ''),
+('G12', 'Apakah nafsu makan anda menurun?', 'G11', ''),
+('G13', 'Apakah anda merasakan lemah letih lesu?', 'G12', ''),
+('G14', 'Apakah anda ruam-ruam?', 'G7', ''),
+('G15', 'Apakah anda nyeri otot persendian?', 'G14', ''),
+('G16', 'Apakah anda merasakan nyeri di belakang mata?', 'G15', ''),
+('G17', 'Apakah anda merasakan lemah letih lesu?', 'G16', ''),
+('G18', 'Apakah anda merasakan asam pada mulut?', 'G5', ''),
+('G19', 'Apakah anda merasakan mual?', 'G18', ''),
+('G2', 'Apakah Demam Naik Terutama pada Malam Hari?', 'G1', ''),
+('G20', 'Apakah anda merasakan muntah?', 'G19', ''),
+('G3', 'Apakah Merasakan Demam Turun pada Hari ke 3?', '', 'G1'),
 ('G4', 'Apakah Demam Ringan Biasa?', '', ''),
 ('G5', 'Apakah Merasakan Nyeri pada Ulu Hati?', '', ''),
-('G6', 'Apakah ada rasa Konstipasi atau sembelit?', '', ''),
-('G7', 'Apakah anda merasakan Sakit Kepala?', '', ''),
-('G8', 'Apakah anda merasakan Nyeri Perut seperti Kram?', '', ''),
-('G9', 'Apakah anda merasakan rasa mual?', 'G2', 'G6');
+('G6', 'Apakah ada rasa Konstipasi atau sembelit?', 'G2', ''),
+('G7', 'Apakah anda merasakan Sakit Kepala?', 'G3', ''),
+('G8', 'Apakah anda merasakan Nyeri Perut seperti Kram?', 'G4', ''),
+('G9', 'Apakah anda merasakan rasa mual?', 'G6', '');
 
 -- --------------------------------------------------------
 
@@ -87,6 +97,17 @@ INSERT INTO `penyakit` (`id_penyakit`, `nama_penyakit`, `solusi`, `obat`) VALUES
 ('P002', 'Demam Berdarah Dengue (DBD)', '', ''),
 ('P003', 'Gastroentritis', '', ''),
 ('P004', 'Dispepsi', '', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `result`
+--
+
+CREATE TABLE `result` (
+  `id_user` int(11) NOT NULL,
+  `gejala_awal` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -141,6 +162,12 @@ ALTER TABLE `pasien`
 --
 ALTER TABLE `penyakit`
   ADD PRIMARY KEY (`id_penyakit`);
+
+--
+-- Indexes for table `result`
+--
+ALTER TABLE `result`
+  ADD KEY `id_user` (`id_user`);
 
 --
 -- Indexes for table `rulebase`
