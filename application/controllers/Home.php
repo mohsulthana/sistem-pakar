@@ -26,6 +26,11 @@ class Home extends CI_Controller {
 	{
 		$this->load->view('admin/login');
 	}
+
+	public function hitung()
+	{
+	}
+
 	public function diagnosa()
 	{
 		$this->load->view('diagnosa');
@@ -39,13 +44,12 @@ class Home extends CI_Controller {
 
 
 	public function tambah_aksi2(){
-		$nama = $this->input->post('nama');
-		$umur = $this->input->post('umur');
- 		$jenis_kelamin = $this->input->post('jenis_kelamin');
- 		$email = $this->input->post('email');
+		$awal = $this->input->post('awal');
+		var_dump($awal); exit;
+		
 
 		$data = array(
-			'nama' => $nama,
+			'awal' => $awal,
 			'umur' => $umur,
 			'jenis_kelamin' => $jenis_kelamin,
 			'email' => $email,
