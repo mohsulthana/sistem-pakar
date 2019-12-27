@@ -44,9 +44,43 @@ class Home extends CI_Controller {
 
 
 	public function tambah_aksi2(){
-		$awal = $this->input->post('awal');
-		var_dump($awal); exit;
-		
+		// INIT ARRAY, JUMLAH PERTANYAAN, GEJALA PENYAKIT
+		$q = [];
+		$n = 17;
+		$gejala = [
+			'Typhoid' 			=> [1,4,8,10,15,17],
+			'DBD' 				=> [1,9,11,13,16,17],
+			'Gastroentritis' 	=> [2,6,10,12,14],
+			'Dispepsia' 		=> [3,7,10,12]
+		];
+		$count_gejala = [
+			'Typhoid' 			=> 0,
+			'DBD' 				=> 0,
+			'Gastroentritis' 	=> 0,
+			'Dispepsia' 		=> 0
+		];
+
+		// AMBIL ISI VALUE FORM
+		for ($i = 1; $i <= $n ; $i++) {
+			$q[$i-1] = $this->input->post("q".$i);
+			// CEK VALUE APAKAH TERMASUK GEJALA PADA PENYAKIT DI ARRAY GEJALA
+			foreach ($gejala as $key => $value) {
+				if(in_array($q[$i-1], $value))
+					$count_gejala[$key]++;
+			}
+		}
+
+		// HITUNG PRESENTASE PENYAKIT
+		$penyakit = [];
+		foreach ($count_gejala as $key => $value) {
+			$penyakit[$key] = $value/count($gejala[$key])*100;
+			$penyakit[$key] = number_format((float)$penyakit[$key], 2, '.', '')."%";
+		}
+		echo "<pre>";
+		print_r ($q);
+		print_r ($count_gejala);
+		print_r ($penyakit);
+		echo "</pre>";exit;
 
 		$data = array(
 			'awal' => $awal,

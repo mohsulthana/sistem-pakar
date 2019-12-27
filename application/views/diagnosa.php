@@ -93,143 +93,56 @@
           <h1 class="m-0 font-weight-bold text-primary">
             <center>Form Data</center>
           </h1>
-
         </div>
-        <!-- <div class="card-body">
-                <div class="center">
-                  <form id="regForm" action="<?php echo base_url(). 'home/tambah_aksi2/'; ?>" method="post" >
-                      <div class="tab">Biodata:
-                        <p><input placeholder="Nama Lengkap..." oninput="this.className = ''"></p>
-                        <p><input placeholder="Umur..." oninput="this.className = ''"></p>
-                        <p><input placeholder="Jenis Kelamin..." oninput="this.className = ''"></p>
-                        <p><input type="Textarea" placeholder="Alamat..." oninput="this.className = ''"></p>
-                      </div>
-
-                      <div class="tab">Contact Info:
-                        <p><input type="Textarea" placeholder="Alamat..." oninput="this.className = ''"></p>
-                        <p><input placeholder="Jenis Kelamin..." oninput="this.className = ''"></p>
-                      </div>
-
-                      <div class="tab">Birthday:
-                        <p><input placeholder="dd" oninput="this.className = ''"></p>
-                        <p><input placeholder="mm" oninput="this.className = ''"></p>
-                        <p><input placeholder="yyyy" oninput="this.className = ''"></p>
-                      </div>
-
-                      <div class="tab">Login Info:
-                        <p><input placeholder="Username..." oninput="this.className = ''"></p>
-                        <p><input placeholder="Password..." oninput="this.className = ''"></p>
-                      </div>
-
-                      <div style="overflow:auto;">
-                        <div style="float:right;">
-                          <button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
-                          <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
-                        </div>
-                      </div>
-
-                      <div style="text-align:center;margin-top:40px;">
-                        <span class="step"></span>
-                        <span class="step"></span>
-                        <span class="step"></span>
-                        <span class="step"></span>
-                      </div>
-                
-                  </form>
-                </div>
-              </div> -->
         <div class="card-body">
           <div class="center">
             <form id="regForm" action="<?php echo base_url(). 'home/tambah_aksi2/'; ?>" method="post">
-              <div class="tab">Pertanyaan 1
-                <div class="container">
-                  <h4>Apakah anda merasa demam?</h4>
-                  Demam tinggi <input type="radio" name="awal" id="gejala_awal" value="tinggi">
-                  Demam Ringan <input type="radio" name="awal" id="gejala_awal" value="rendah">
-                  Nyeri Ulu Hati <input type="radio" name="awal" id="gejala_awal" value="ulu">
-                </div>
-              </div>
-
-              <div class="tab" id="dua_demam_tinggi">Pertanyaan 2
-                <div class="container">
-                  <h4>Manakah yang paling mewakili</h4>
-                  Demam naik terutama pada malam hari<input type="radio" name="demam_naik_turun" id="gejala_demam_naik_turun" value="naik">
-                  Demam turun pada hari ke-3 <input type="radio" name="demam_naik_turun" id="gejala_demam_naik_turun" value="turun">
-                </div>
-              </div>
-
-              <div class="tab" id="tiga_demam_naik">Pertanyaan 3
-                <div class="container">
-                  <h4>Apakah anda merasa konstipasi/sembelit?</h4>
-                  Ya <input type="radio" name="sembelit" id="gejala_sembelit" value="ya">
-                  Tidak <input type="radio" name="sembelit" id="gejala_sembelit" value="tidak">
-                </div>
-              </div>
-
-              <div class="tab" id="tiga_demam_turun">Pertanyaan 3
-                <div class="container">
-                  <h4>Apakah anda merasa konstipasi/sembelit?</h4>
-                  Ya <input type="radio" name="sembelit" id="gejala_sembelit" value="tinggi">
-                  Tidak <input type="radio" name="sembelit" id="gejala_sembelit" value="rendah">
-                </div>
-              </div>
-
-              <script>
-              $('input[name=awal]').on('change', function() {
-                var diagnosa    = $('input[name=awal]:checked').val();
-                var diagnosa2   = $('input[name=demam_naik_turun]:checked').val();
-                var diagnosa3   = $('input[name=sembelit]:checked').val();
-
-
-
-                if (diagnosa === 'tinggi') {
-                  $('#dua_demam_tinggi').toggle();
-                  if (diagnosa2 === 'naik') {
-                    console.log('naik');
-                    $('#tiga_demam_naik').toggle();
-                  
-                  
-                  
-                  
-                  
-                  } else if (diagnosa2 === 'turun') {
-                    $('#tiga_demam_turun').toggle();
-                  }
-                
-                
-                
-                
-                } else if (diagnosa == 'rendah') {
-                  $('#dua_demam_tinggi').toggle();
-
-                } else if (diagnosa == ulu) {
-                  $('#dua_demam_tinggi').toggle();
-
-                }
-              })
-              </script>
-              <div style="overflow:auto;">
-                <div style="float:right;">
-                  <button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
-                  <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
-                </div>
-              </div>
-
-              <div style="text-align:center;margin-top:40px;">
-                <span class="step"></span>
-              </div>
+              <h4>Gejala apa yang anda alami? (click radio button atau nama gejala)</h4>
+              <br>
+              
+              <label for="q1">Demam Tinggi</label>
+              <input id="q1" type="checkbox" name="q1" value="1 emam Tinggi" checked="">
+              <label for="q2">Demam Ringan</label>
+              <input id="q2" type="checkbox" name="q2" value="2 emam Ringan" checked="">
+              <label for="q3">Nyeri Ulu Hati</label>
+              <input id="q3" type="checkbox" name="q3" value="3 yeri Ulu Hati" checked="">
+              <label for="q4">Demam naik pada malam hari</label>
+              <input id="q4" type="checkbox" name="q4" value="4 emam naik pada malam hari" checked="">
+              <label for="q5">Demam menurun pada hari ke-3</label>
+              <input id="q5" type="checkbox" name="q5" value="5 emam menurun pada hari ke-3" checked="">
+              <label for="q6">Nyeri Perut/Kram</label>
+              <input id="q6" type="checkbox" name="q6" value="6 yeri Perut/Kram" checked="">
+              <label for="q7">Terasa asam pada mulut</label>
+              <input id="q7" type="checkbox" name="q7" value="7 erasa asam pada mulut" checked="">
+              <label for="q8">konstipasi/sembelit</label>
+              <input id="q8" type="checkbox" name="q8" value="8 onstipasi/sembelit" checked="">
+              <label for="q9">sakit kepala</label>
+              <input id="q9" type="checkbox" name="q9" value="9 akit kepala" checked="">
+              <label for="q10">mual</label>
+              <input id="q10" type="checkbox" name="q10" value="10 mual">
+              <label for="q11">ruam ruam</label>
+              <input id="q11" type="checkbox" name="q11" value="11 ruam ruam" checked="">
+              <label for="q12">muntah</label>
+              <input id="q12" type="checkbox" name="q12" value="12 muntah" >
+              <label for="q13">nyeri otot persendian</label>
+              <input id="q13" type="checkbox" name="q13" value="13 nyeri otot persendian" checked="">
+              <label for="q14">diare</label>
+              <input id="q14" type="checkbox" name="q14" value="14 diare" checked="">
+              <label for="q15">nafsu makan menurun</label>
+              <input id="q15" type="checkbox" name="q15" value="15 nafsu makan menurun" checked="">
+              <label for="q16">nyeri belakang mata</label>
+              <input id="q16" type="checkbox" name="q16" value="16 nyeri belakang mata" checked="">
+              <label for="q17">lemah letih lesu</label>
+              <input id="q17" type="checkbox" name="q17" value="17 lemah letih lesu">
+              <input type="submit" name="" value="Submit">
             </form>
           </div>
         </div>
       </div>
     </div>
   </div>
+
   <!-- /.container -->
-
-
-
-
-
   <footer id="footer" class="dark-wrapper">
     <section class="ss-style-top"></section>
     <div class="container inner">
