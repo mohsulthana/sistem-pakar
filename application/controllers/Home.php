@@ -43,55 +43,88 @@ class Home extends CI_Controller {
 	}
 
 
-	public function tambah_aksi2(){
+	public function hasil(){
+
+		$nama = $this->input->post('nama');
+		$umur = $this->input->post('umur');
+		$kelamin = $this->input->post('kelamin');
+		$alamat = $this->input->post('alamat');
 		// INIT ARRAY, JUMLAH PERTANYAAN, GEJALA PENYAKIT
 		$q = [];
 		$n = 17;
 		$gejala = [
-			'Typhoid' 			=> [1,4,8,10,15,17],
-			'DBD' 				=> [1,9,11,13,16,17],
+			'Penyakit Typhoid' 			=> [1,4,8,10,15,17],
+			'Demam Berdarah Dengue (DBD)' 				=> [1,9,11,13,16,17],
 			'Gastroentritis' 	=> [2,6,10,12,14],
 			'Dispepsia' 		=> [3,7,10,12]
 		];
 		$count_gejala = [
-			'Typhoid' 			=> 0,
-			'DBD' 				=> 0,
+			'Penyakit Typhoid' 			=> 0,
+			'Demam Berdarah Dengue (DBD)' 				=> 0,
 			'Gastroentritis' 	=> 0,
 			'Dispepsia' 		=> 0
 		];
-
+		$this->data['gejala'] = [];
+		$numb_gejala = [];
 		// AMBIL ISI VALUE FORM
 		for ($i = 1; $i <= $n ; $i++) {
 			$q[$i-1] = $this->input->post("q".$i);
-			// CEK VALUE APAKAH TERMASUK GEJALA PADA PENYAKIT DI ARRAY GEJALA
-			foreach ($gejala as $key => $value) {
-				if(in_array($q[$i-1], $value))
-					$count_gejala[$key]++;
+
+			
+			
+			if ($q[$i-1] != NULL) {
+				$this->data['gejala'] = $q[$i-1];
+				//  get only number
+				if (preg_match('/[0-9]/', $this->data['gejala'], $extracted)) {
+					// print_r($string);
+					$string = implode(',', $extracted);
+					$numb_gejala[] = $string;
+				}
+				foreach ($gejala as $key => $value) {
+					if(in_array($q[$i-1], $value))
+						$count_gejala[$key]++;
+				}
 			}
+			// CEK VALUE APAKAH TERMASUK GEJALA PADA PENYAKIT DI ARRAY GEJALA
 		}
 
 		// HITUNG PRESENTASE PENYAKIT
 		$penyakit = [];
 		foreach ($count_gejala as $key => $value) {
 			$penyakit[$key] = $value/count($gejala[$key])*100;
-			$penyakit[$key] = number_format((float)$penyakit[$key], 2, '.', '')."%";
+			$penyakit[$key] = number_format((float)$penyakit[$key], 2, '.', '')." %";
 		}
-		echo "<pre>";
-		print_r ($q);
-		print_r ($count_gejala);
-		print_r ($penyakit);
-		echo "</pre>";exit;
+		$this->data['gejala'] = $q;
 
-		$data = array(
-			'awal' => $awal,
+		foreach($penyakit as $key => $value) {
+			$tertinggi = max($penyakit);
+
+			if ($value === $tertinggi) {
+				$this->data['hasil'] = $key . ' ' . $value;
+				$this->data['nama_penyakit'] = $key;
+			}
+		}
+
+		$this->data['info_penyakit'] = $this->db->get_where('penyakit', ['nama_penyakit' => $this->data['nama_penyakit']])->result()[0];
+		$id_penyakit = $this->data['info_penyakit']->id_penyakit;
+
+		$this->data['identitas'] = array(
+			'nama' => $nama,
 			'umur' => $umur,
-			'jenis_kelamin' => $jenis_kelamin,
-			'email' => $email,
+			'jenis_kelamin' => $kelamin,
+			'alamat' => $alamat,
+			'diagnosa'	=> $id_penyakit
+		);
 
-
-			);
-		$this->m_data->input_data1($data,'pasien');
-		redirect('home/diagnosa1');
+		$insert = $this->m_data->input_data1($this->data['identitas'],'pasien');
+		$id = $this->db->insert_id();
+		foreach ($numb_gejala as $key => $value) {
+			$data = [
+				'gejala' => json_encode($numb_gejala)
+			];
+			$this->db->where('id_pasien', $id)->update('pasien', $data);
+		}
+		$this->load->view('hasil', $this->data);
 	}
 
 	public function __construct(){

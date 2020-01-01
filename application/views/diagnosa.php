@@ -96,34 +96,44 @@
         </div>
         <div class="card-body">
           <div class="center">
-            <form id="regForm" action="<?php echo base_url(). 'home/tambah_aksi2/'; ?>" method="post">
+            <form id="regForm" action="<?php echo site_url(). '/home/hasil/'; ?>" method="post">
               <h4>Gejala apa yang anda alami? (click radio button atau nama gejala)</h4>
               <br>
-              
+              <label for="nama">Nama</label>
+              <input type="text" id="nama" name="nama" class="form-control" >
+              <label for="umur">Umur</label>
+              <input type="number" id="umur" name="umur" class="form-control" >
+              <label for="kelamin">Alamat</label>
+              <textarea type="text" id="alamat" name="alamat" class="form-control" ></textarea>
+              <label for="kelamin">Jenis Kelamin</label>
+              <select name="kelamin" id="kelamin" class="form-control">
+                <option value="Laki-Laki">Laki-Laki</option>
+                <option value="Perempuan">Perempuan</option>
+              </select>
               <label for="q1">Demam Tinggi</label>
-              <input id="q1" type="checkbox" name="q1" value="1 emam Tinggi" checked="">
+              <input id="q1" type="checkbox" name="q1" value="1 Demam Tinggi" checked="">
               <label for="q2">Demam Ringan</label>
-              <input id="q2" type="checkbox" name="q2" value="2 emam Ringan" checked="">
+              <input id="q2" type="checkbox" name="q2" value="2 Demam Ringan" checked="">
               <label for="q3">Nyeri Ulu Hati</label>
-              <input id="q3" type="checkbox" name="q3" value="3 yeri Ulu Hati" checked="">
+              <input id="q3" type="checkbox" name="q3" value="3 Nyeri Ulu Hati" checked="">
               <label for="q4">Demam naik pada malam hari</label>
-              <input id="q4" type="checkbox" name="q4" value="4 emam naik pada malam hari" checked="">
+              <input id="q4" type="checkbox" name="q4" value="4 Demam naik pada malam hari" checked="">
               <label for="q5">Demam menurun pada hari ke-3</label>
-              <input id="q5" type="checkbox" name="q5" value="5 emam menurun pada hari ke-3" checked="">
+              <input id="q5" type="checkbox" name="q5" value="5 Demam menurun pada hari ke-3" checked="">
               <label for="q6">Nyeri Perut/Kram</label>
-              <input id="q6" type="checkbox" name="q6" value="6 yeri Perut/Kram" checked="">
+              <input id="q6" type="checkbox" name="q6" value="6 Nyeri Perut/Kram" checked="">
               <label for="q7">Terasa asam pada mulut</label>
-              <input id="q7" type="checkbox" name="q7" value="7 erasa asam pada mulut" checked="">
+              <input id="q7" type="checkbox" name="q7" value="7 Terasa asam pada mulut" checked="">
               <label for="q8">konstipasi/sembelit</label>
-              <input id="q8" type="checkbox" name="q8" value="8 onstipasi/sembelit" checked="">
+              <input id="q8" type="checkbox" name="q8" value="8 Konstipasi/sembelit" checked="">
               <label for="q9">sakit kepala</label>
-              <input id="q9" type="checkbox" name="q9" value="9 akit kepala" checked="">
+              <input id="q9" type="checkbox" name="q9" value="9 Sakit kepala" checked="">
               <label for="q10">mual</label>
-              <input id="q10" type="checkbox" name="q10" value="10 mual">
+              <input id="q10" type="checkbox" name="q10" value="10 Mual">
               <label for="q11">ruam ruam</label>
               <input id="q11" type="checkbox" name="q11" value="11 ruam ruam" checked="">
               <label for="q12">muntah</label>
-              <input id="q12" type="checkbox" name="q12" value="12 muntah" >
+              <input id="q12" type="checkbox" name="q12" value="12 Muntah" >
               <label for="q13">nyeri otot persendian</label>
               <input id="q13" type="checkbox" name="q13" value="13 nyeri otot persendian" checked="">
               <label for="q14">diare</label>
@@ -134,7 +144,7 @@
               <input id="q16" type="checkbox" name="q16" value="16 nyeri belakang mata" checked="">
               <label for="q17">lemah letih lesu</label>
               <input id="q17" type="checkbox" name="q17" value="17 lemah letih lesu">
-              <input type="submit" name="" value="Submit">
+              <input type="submit" name="" value="Submit" class="btn">
             </form>
           </div>
         </div>
