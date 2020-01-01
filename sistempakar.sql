@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 26, 2019 at 11:25 AM
+-- Generation Time: Jan 01, 2020 at 02:17 PM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.1.31
 
@@ -72,8 +72,18 @@ CREATE TABLE `pasien` (
   `nama` text NOT NULL,
   `alamat` varchar(500) NOT NULL,
   `umur` varchar(2) NOT NULL,
-  `jenis_kelamin` varchar(50) NOT NULL
+  `jenis_kelamin` varchar(50) NOT NULL,
+  `diagnosa` varchar(8) NOT NULL,
+  `gejala` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `pasien`
+--
+
+INSERT INTO `pasien` (`id_pasien`, `nama`, `alamat`, `umur`, `jenis_kelamin`, `diagnosa`, `gejala`) VALUES
+(7, 'Akbar', 'Jl. Muhajirin LK 1 RT 1 Indralaya Indah, Kecamatan Indralaya', '23', 'Laki-Laki', 'P004', '[\"1\",\"3\",\"5\",\"7\",\"8\",\"9\",\"1\",\"1\"]'),
+(8, 'Akbar', 'Jl. Muhajirin LK 1 RT 1 Indralaya Indah, Kecamatan Indralaya', '23', 'Laki-Laki', 'P004', '[\"1\",\"3\",\"5\",\"7\",\"8\",\"9\",\"1\",\"1\"]');
 
 -- --------------------------------------------------------
 
@@ -96,7 +106,7 @@ INSERT INTO `penyakit` (`id_penyakit`, `nama_penyakit`, `solusi`, `obat`) VALUES
 ('P001', 'Penyakit Typhoid', 'Segera pergi ke klinik atau rumah sakit untuk memastikan melalui uji laboratorium.', ''),
 ('P002', 'Demam Berdarah Dengue (DBD)', '', ''),
 ('P003', 'Gastroentritis', '', ''),
-('P004', 'Dispepsi', '', '');
+('P004', 'Dispepsia', '', '');
 
 -- --------------------------------------------------------
 
@@ -155,7 +165,8 @@ ALTER TABLE `gejala`
 -- Indexes for table `pasien`
 --
 ALTER TABLE `pasien`
-  ADD PRIMARY KEY (`id_pasien`);
+  ADD PRIMARY KEY (`id_pasien`),
+  ADD KEY `diagnosa` (`diagnosa`);
 
 --
 -- Indexes for table `penyakit`
@@ -190,7 +201,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `pasien`
 --
 ALTER TABLE `pasien`
-  MODIFY `id_pasien` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_pasien` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `user`
@@ -201,6 +212,12 @@ ALTER TABLE `user`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `pasien`
+--
+ALTER TABLE `pasien`
+  ADD CONSTRAINT `pasien_ibfk_1` FOREIGN KEY (`diagnosa`) REFERENCES `penyakit` (`id_penyakit`);
 
 --
 -- Constraints for table `rulebase`
