@@ -110,6 +110,10 @@
                 <option value="Laki-Laki">Laki-Laki</option>
                 <option value="Perempuan">Perempuan</option>
               </select>
+              <!-- <?php foreach($gejala as $key => $value) { ?>
+                <label for="q1"><?= $value->nama_gejala; ?></label>
+                <input type="checkbox" name="q" value="<?= $value->nama_gejala; ?>" checked>
+              <?php } ?> -->
               <label for="q1">Demam Tinggi</label>
               <input id="q1" type="checkbox" name="q1" value="1 Demam Tinggi" checked="">
               <label for="q2">Demam Ringan</label>

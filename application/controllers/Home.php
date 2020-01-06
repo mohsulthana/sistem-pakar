@@ -33,7 +33,8 @@ class Home extends CI_Controller {
 
 	public function diagnosa()
 	{
-		$this->load->view('diagnosa');
+		$this->data['gejala'] = $this->db->get('gejala')->result();
+		$this->load->view('diagnosa', $this->data);
 	}
 
 	public function diagnosa1()
@@ -71,7 +72,7 @@ class Home extends CI_Controller {
 			$q[$i-1] = $this->input->post("q".$i);
 			$this->data['gejala'] = $q[$i-1];
 			// CEK VALUE APAKAH TERMASUK GEJALA PADA PENYAKIT DI ARRAY GEJALA
-			if (preg_match('/[0-9]/', $this->data['gejala'], $extracted)) {
+			if (preg_match('/[0-9]{1,3}/', $this->data['gejala'], $extracted)) {
 				// print_r($string);
 				$string = implode(',', $extracted);
 				$numb_gejala[] = $string;
@@ -109,7 +110,7 @@ class Home extends CI_Controller {
 			'alamat' => $alamat,
 			'diagnosa'	=> $id_penyakit
 		);
-
+		
 		$insert = $this->m_data->input_data1($this->data['identitas'],'pasien');
 		$id = $this->db->insert_id();
 		foreach ($numb_gejala as $key => $value) {
