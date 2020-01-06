@@ -69,23 +69,17 @@ class Home extends CI_Controller {
 		// AMBIL ISI VALUE FORM
 		for ($i = 1; $i <= $n ; $i++) {
 			$q[$i-1] = $this->input->post("q".$i);
-
-			
-			
-			if ($q[$i-1] != NULL) {
-				$this->data['gejala'] = $q[$i-1];
-				//  get only number
-				if (preg_match('/[0-9]/', $this->data['gejala'], $extracted)) {
-					// print_r($string);
-					$string = implode(',', $extracted);
-					$numb_gejala[] = $string;
-				}
-				foreach ($gejala as $key => $value) {
-					if(in_array($q[$i-1], $value))
-						$count_gejala[$key]++;
-				}
-			}
+			$this->data['gejala'] = $q[$i-1];
 			// CEK VALUE APAKAH TERMASUK GEJALA PADA PENYAKIT DI ARRAY GEJALA
+			if (preg_match('/[0-9]/', $this->data['gejala'], $extracted)) {
+				// print_r($string);
+				$string = implode(',', $extracted);
+				$numb_gejala[] = $string;
+			}
+			foreach ($gejala as $key => $value) {
+				if(in_array($q[$i-1], $value))
+					$count_gejala[$key]++;
+			}
 		}
 
 		// HITUNG PRESENTASE PENYAKIT
@@ -124,6 +118,7 @@ class Home extends CI_Controller {
 			];
 			$this->db->where('id_pasien', $id)->update('pasien', $data);
 		}
+
 		$this->load->view('hasil', $this->data);
 	}
 
